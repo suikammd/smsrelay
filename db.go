@@ -5,11 +5,11 @@ import (
 	"fmt"
 	_ "github.com/mattn/go-sqlite3"
 	"io/ioutil"
+	"log"
 	"os"
 	"os/exec"
 	"strconv"
 	"time"
-	"log"
 )
 
 type SMS struct {
@@ -65,7 +65,8 @@ func (d *Database) Load() error {
 func (d *Database) Init() {
 	err := d.Load()
 	if err != nil {
-		d.Save(time.Now().UnixNano())
+		log.Println(err)
+		d.Save(time.Now().Unix()*1000)
 		log.Println("Last file not found. Created and set last time to now.")
 	}
 }
