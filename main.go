@@ -16,6 +16,7 @@ func main() {
 	flag.StringVar(&chat0, "chat0", "", "chatid 0")
 	flag.StringVar(&chat1, "chat1", "", "chatid 1")
 	flag.IntVar(&sleep_time, "sleep", 10, "sleep time in second")
+	flag.Parse()
 
 	bot := TGBOT{}
 	bot.Init(token, chat0, chat1)
