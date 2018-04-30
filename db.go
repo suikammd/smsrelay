@@ -9,6 +9,7 @@ import (
 	"os/exec"
 	"strconv"
 	"time"
+	"log"
 )
 
 type SMS struct {
@@ -64,7 +65,8 @@ func (d *Database) Load() error {
 func (d *Database) Init() {
 	err := d.Load()
 	if err != nil {
-		d.Save(time.Now().Unix())
+		d.Save(time.Now().UnixNano())
+		log.Println("Last file not found. Created and set last time to now.")
 	}
 }
 

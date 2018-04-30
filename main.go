@@ -23,7 +23,9 @@ func main() {
 	db := Database{last_path: last_path, db_path: db_path}
 	db.Init()
 	for {
+		log.Println("Start pull and read database.")
 		smses, err := db.Read()
+		log.Printf("%d sms read.\n", len(smses))
 		if err == nil {
 			var last int64
 			for _, sms := range smses {
