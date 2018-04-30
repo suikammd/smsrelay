@@ -30,7 +30,7 @@ func (d *Database) Save(l int64) error {
 		return nil
 	}
 	d.last = l
-	b := []byte(strconv.FormatInt(d.last, 64))
+	b := []byte(strconv.FormatInt(d.last, 10))
 	err := ioutil.WriteFile(d.last_path, b, 0644)
 	if err != nil {
 		return err
