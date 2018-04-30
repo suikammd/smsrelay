@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -53,7 +54,7 @@ func (d *Database) Load() error {
 	if err != nil {
 		return err
 	}
-	sb := string(b)
+	sb := strings.Trim(string(b), "\r\t\n ")
 	last, err := strconv.ParseInt(sb, 10, 64)
 	if err != nil {
 		return err
@@ -66,7 +67,7 @@ func (d *Database) Init() {
 	err := d.Load()
 	if err != nil {
 		log.Println(err)
-		d.Save(time.Now().Unix()*1000)
+		d.Save(time.Now().Unix() * 1000)
 		log.Println("Last file not found. Created and set last time to now.")
 	}
 }
